@@ -16,17 +16,15 @@ apt-get -y install \
 
 apt-get install -y docker-ce docker-ce-cli containerd.io
 
-mkdir -p /opt/docker_apps/bookstack
-
-docker run -d --restart=always --name bookstack \
-  -v /opt/docker_apps/bookstack/:/config/ \
-  -e DB_HOST=db.node.consul \
-  -e DB_USER=bookstack \
-  -e DB_PASS=db-stack-root-password \
-  -e DB_DATABASE=bookstackapp \
-  --net=host \
-  --dns=127.0.0.1 \
-  linuxserver/bookstack
+docker run -d --restart=always --name guestbookapp \
+-e MYSQL_SERVER_ADDRESS=db.node.consul \
+-e MYSQL_USER=guestbookapp \
+-e MYSQL_PASSWORD=secret-for-guest-book-user \
+-e MYSQL_DATABASE=guestbookapp \
+-e APP_ADDRESS=127.0.0.1 \
+--net=host \
+--dns=127.0.0.1 \
+f3ex/guestbookapp:latest
 
 docker run -d \
   --net="host" \
@@ -35,14 +33,3 @@ docker run -d \
   -v "/:/host:ro,rslave" \
   quay.io/prometheus/node-exporter \
   --path.rootfs=/host
-
-# docker volume create consul_config
-
-# docker run -d \
-#     --restart=unless-stopped \
-#     --name=consul \
-#     --net=host \
-#     --hostname=db \
-#     -v consul_config:/consul/config \
-#     -e CONSUL_BIND_INTERFACE=eth0 \
-#     consul

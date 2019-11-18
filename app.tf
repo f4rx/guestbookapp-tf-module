@@ -85,7 +85,6 @@ EOF
       -retry-join "provider=os tag_key=consul tag_value=server auth_url=https://api.selvpc.ru/identity/v3 password=${var.user_password} user_name=${var.user_name} project_id=${var.project_id}  domain_name=${var.domain_name} region=${var.region}"
       # '"
       sleep 5
-      docker restart bookstack
 
       docker exec -ti consul consul services register -tag "urlprefix-:80 proto=tcp" -port 80 -name app-${count.index}
       # '"

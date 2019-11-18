@@ -16,16 +16,19 @@ apt-get -y install \
 
 apt-get install -y docker-ce docker-ce-cli containerd.io
 
-docker run -d --restart=unless-stopped \
+docker volume create mariadb_db_volume
+
+docker run -d --restart=always \
   -e PUID=1000 \
   -e PGID=1000 \
   -e MYSQL_ROOT_PASSWORD=mysql-root-password-1 \
   -e TZ=Europe/Moscow \
-  -e MYSQL_DATABASE=bookstackapp \
-  -e MYSQL_USER=bookstack \
-  -e MYSQL_PASSWORD=db-stack-root-password \
+  -e MYSQL_DATABASE=guestbookapp \
+  -e MYSQL_USER=guestbookapp \
+  -e MYSQL_PASSWORD=secret-for-guest-book-user \
   --name=db \
   -p 3306:3306 \
+  - v mariadb_db_volume:/config
   linuxserver/mariadb
 
 docker run -d \
