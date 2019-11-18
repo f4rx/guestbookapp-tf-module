@@ -28,7 +28,7 @@ docker run -d --restart=always \
   -e MYSQL_PASSWORD=secret-for-guest-book-user \
   --name=db \
   -p 3306:3306 \
-  - v mariadb_db_volume:/config
+  -v mariadb_db_volume:/config \
   linuxserver/mariadb
 
 docker run -d \
