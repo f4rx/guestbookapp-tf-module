@@ -94,8 +94,8 @@ EOF
       type  = "ssh"
       host  = "${self.access_ip_v4}"
       user  = "root"
-      private_key = "${file("~/.ssh/id_rsa")}"
-      # agent = true
+      # private_key = "${file("~/.ssh/id_rsa")}"
+      agent = true
       bastion_host = "${openstack_networking_floatingip_v2.floatingip_db.address}"
       bastion_user = "root"
     }
@@ -108,8 +108,8 @@ EOF
       type  = "ssh"
       host  = "${self.access_ip_v4}"
       user  = "root"
-      private_key = "${file("~/.ssh/id_rsa")}"
-      # agent = true
+      # private_key = "${file("~/.ssh/id_rsa")}"
+      agent = true
       bastion_host = "${openstack_networking_floatingip_v2.floatingip_db.address}"
       bastion_user = "root"
     }
@@ -127,8 +127,8 @@ EOF
       type = "ssh"
       host  = "${self.access_ip_v4}"
       user  = "root"
-      private_key = "${file("~/.ssh/id_rsa")}"
-      # agent = true
+      # private_key = "${file("~/.ssh/id_rsa")}"
+      agent = true
       bastion_host = "${openstack_networking_floatingip_v2.floatingip_db.address}"
       bastion_user = "root"
     }
