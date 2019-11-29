@@ -60,8 +60,8 @@ resource "openstack_compute_instance_v2" "instance_db" {
       type  = "ssh"
       host  = "${openstack_networking_floatingip_v2.floatingip_db.address}"
       user  = "root"
-      private_key = "${file("~/.ssh/id_rsa")}"
-      # agent = true
+      # private_key = "${file("~/.ssh/id_rsa")}"
+      agent = true
     }
   }
 
@@ -75,8 +75,8 @@ resource "openstack_compute_instance_v2" "instance_db" {
       type = "ssh"
       host  = "${openstack_networking_floatingip_v2.floatingip_db.address}"
       user  = "root"
-      private_key = "${file("~/.ssh/id_rsa")}"
-      # agent = true
+      # private_key = "${file("~/.ssh/id_rsa")}"
+      agent = true
     }
   }
 }
